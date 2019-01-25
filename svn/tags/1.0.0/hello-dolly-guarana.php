@@ -5,13 +5,13 @@ Plugin URI: https://wordpress.org/plugins/hello-dolly-guarana/
 Description: This is not just a plugin, it symbolizes the hope and enthusiasm of an entire generation summed up in three words sung most famously by Dollynho: Hello, Dolly Guaraná. When activated you will randomly see a phrase from <cite>Hello, Dolly Guaraná</cite> in the upper right of your admin screen on every page.
 Author: Roberto Pereira da Costa
 Author URI: https://robertopc.github.io/
-Version: 1.0.1
+Version: 1.0.0
 Text Domain: hello-dolly-guarana
 */
 
 function hello_dolly_guarana_get_lyric() {
 	/** These are the lyrics to Hello Dolly */
-	$phrases = file_get_contents(__DIR__.'/phrases.txt');
+	$phrases = file_get_contents('/phrases.txt');
 
 	// Here we split it into lines
 	$phrases = explode( "\n", $phrases );

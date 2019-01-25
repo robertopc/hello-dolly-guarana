@@ -4,33 +4,20 @@ Plugin Name: Hello Dolly Guaraná
 Plugin URI: https://wordpress.org/plugins/hello-dolly-guarana/
 Description: This is not just a plugin, it symbolizes the hope and enthusiasm of an entire generation summed up in three words sung most famously by Dollynho: Hello, Dolly Guaraná. When activated you will randomly see a phrase from <cite>Hello, Dolly Guaraná</cite> in the upper right of your admin screen on every page.
 Author: Roberto Pereira da Costa
-Author URI: https://robertopc.com.br/
+Author URI: https://robertopc.github.io/
 Version: 1.0.0
 Text Domain: hello-dolly-guarana
 */
 
 function hello_dolly_guarana_get_lyric() {
 	/** These are the lyrics to Hello Dolly */
-	$lyrics = "Oi pessoal, sou o Dollynho seu amiguinho vamos cantar?
-Dolly guaraná o sabor brasileiro
-Dolly guaraná, Dolly guaraná, o melhor!
-Eu sou o Dollynho seu amiguinho
-Tome muito líquido
-Jogue a garrafinha no lixo
-Vamos cuidar do nosso planeta
-Cuidado com o sol
-Pratique muito esporte
-Um feliz Natal com Dolly, o melhor!
-Papai você é amor, é meu exemplo na vida, eu te ofereço um Dolly, com toda emoção.
-Mamãe você é amor, mamãe você é minha vida, eu te ofereço um Dolly, com toda emoção.
-A páscoa chegou, trazendo amor, um Dolly, dois Dollys, três Dollys.
-Fruit Dolly, o melhor da fruta!";
+	$phrases = file_get_contents('phrases.txt');
 
 	// Here we split it into lines
-	$lyrics = explode( "\n", $lyrics );
+	$phrases = explode( "\n", $phrases );
 
 	// And then randomly choose a line
-	return wptexturize( $lyrics[ mt_rand( 0, count( $lyrics ) - 1 ) ] );
+	return wptexturize( $phrases[ mt_rand( 0, count( $phrases ) - 1 ) ] );
 }
 
 // This just echoes the chosen line, we'll position it later
@@ -59,7 +46,7 @@ function dolly_guarana_css() {
 		margin: 0;
 		margin-top: 6px;
 		font-size: 11px;
-		/*background-color:#9f0;*/
+		background-color:#9f0;
 		background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAQCAYAAADNo/U5AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAN1wAADdcBQiibeAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAEKSURBVCiRhdK9SkNBEAXgby8pEm0Ufx4gWtjYi+ADiI2PYBmwtrISFGxstLewtTGo+Ah2gr1ah4B2IkJ0LLKRy801LgzLzszZc2b3iAjlwD6eMVWtjaIwvppoY6emNlwVlil0ERjgDDNjaiqgvQwox/l/8tZqxCxXE0VKqUgpjZofa0BLdWN1cYmErRp532hVxnCDL7zirQYUaOfm9PsQmMYmrvIFVdAtjnGNjQIi4j0i7iJiG6cV+Z/ooYEVdMZ+GycVll6pltCqc8Rs3l+y1IWUUiMrioj4qGN6wr2hnXYz2/okR6zmpk4+z2W2w0mgC0PPLZZyD+ij+ZeN5nEUEf1S7iD/32CU+AEfEPsJRF5QZQAAAABJRU5ErkJggg==');
 		background-repeat: no-repeat;
 		background-positon: $x center;
